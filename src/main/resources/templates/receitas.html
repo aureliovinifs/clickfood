@@ -28,7 +28,7 @@
 		</thead>
 		<tbody>
 			<!-- PREENCHENDO A TABELA COM OS USUÁRIOS CADASTRADOS-->
-			<th:block th:each="receita : ${listareceitas}">
+			<th:block th:each="receita : ${receitas}">
 				<tr>
 					<td th:text="${receita.nome}"></td>
 					<td th:text="${receita.tempo}" class="mdl-data-table__cell--non-numeric"></td>
@@ -36,7 +36,6 @@
 					<td th:text="${receita.kcal}" class="mdl-data-table__cell--non-numeric"></td>
 					<td th:text="${receita.categoria.nome}" class="mdl-data-table__cell--non-numeric"></td>
 					<td th:text="${receita.preparo}" class="mdl-data-table__cell--non-numeric"></td>
-
 				</tr>
 			</th:block>
 		</tbody>

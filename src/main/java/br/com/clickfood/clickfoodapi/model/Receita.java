@@ -5,13 +5,17 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "receita", schema = "clickfoodapi")
@@ -44,8 +48,13 @@ public class Receita {
 	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 
-	@ManyToMany(mappedBy = "receitas")
+	@JsonIgnore
+	@ManyToMany(mappedBy = "receitas", fetch = FetchType.EAGER)
 	private List<Ingrediente> ingredientes = new ArrayList<>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "receita")
+	private List<IngredienteReceita> ingredientesReceitas = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -111,12 +120,28 @@ public class Receita {
 		this.categoria = categoria;
 	}
 
+	public List<IngredienteReceita> getIngredienteReceita() {
+		return ingredientesReceitas;
+	}
+
+	public void setIngredienteReceita(List<IngredienteReceita> ingredientesReceitas) {
+		this.ingredientesReceitas = ingredientesReceitas;
+	}
+
 	public List<Ingrediente> getIngredientes() {
 		return ingredientes;
 	}
 
 	public void setIngredientes(List<Ingrediente> ingredientes) {
 		this.ingredientes = ingredientes;
+	}
+
+	public List<IngredienteReceita> getIngredientesReceitas() {
+		return ingredientesReceitas;
+	}
+
+	public void setIngredientesReceitas(List<IngredienteReceita> ingredientesReceitas) {
+		this.ingredientesReceitas = ingredientesReceitas;
 	}
 
 }
