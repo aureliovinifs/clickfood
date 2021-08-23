@@ -20,5 +20,9 @@ public class HomeController {
 	public String sobre() {
 		return "sobre";
 	}
-
+	
+	@RequestMapping("/dica")
+	public String dica() {
+		return "dica";
+	}
 }
