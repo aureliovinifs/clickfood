@@ -19,12 +19,13 @@
 			<!-- PREENCHENDO A TABELA COM AS RECEITAS-->
 			<th:block th:each="receita : ${receitas}">
 				<div class="card mb-3" style="max-width: 540px;">
+
+					<!-- Inicio card receita -->
 					<div class="row g-0">
-						<!-- CARD DE RECEITA -->
 						<div class="col-md-4">
 							<img th:src="@{${receita.url}}" class="img-fluid rounded-start" alt="...">
 						</div>
-					<div class="col-md-8">
+						<div class="col-md-8">
 							<div>
 								<div class="card-body">
 									<h5 class="card-title">
@@ -33,10 +34,10 @@
 									<button type="button" class="btn btn-primary" data-bs-toggle="modal"
 										data-bs-target="#exampleModal" style=" width: 35%; height: 20%;">ver
 										mais</button>
-						<!-- CARD DE RECEITA -->
+
 									<!-- Modal -->
-									<div class="modal fade" id="exampleModal" 
-										aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel"
+										aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
@@ -48,22 +49,26 @@
 												<div class="modal-body">
 													<img th:src="@{${receita.url}}" class="img-fluid rounded-start"
 														alt="...">
-													<p class="card-text">Tempo: <td th:text="${receita.tempo}"
+													<p class="card-text">Tempo:
+														<td th:text="${receita.tempo}"
 															class="mdl-data-table__cell--non-numeric"></td>
 													</p>
-													<p class="card-text">Serve: <td th:text="${receita.serve}"
+													<p class="card-text">Serve:
+														<td th:text="${receita.serve}"
 															class="mdl-data-table__cell--non-numeric"></td>
 													</p>
-													<p class="card-text">Kcal: <td th:text="${receita.kcal}"
+													<p class="card-text">Kcal:
+														<td th:text="${receita.kcal}"
 															class="mdl-data-table__cell--non-numeric"></td>
 													</p>
-
-													<p class="card-text"><small class="text-muted">Modo de preparo <td
-																th:text="${receita.preparo}"
+													<p class="card-text">
+														<small class="text-muted">
+															Modo de preparo
+															<td th:text="${receita.preparo}"
 																class="mdl-data-table__cell--non-numeric">
 															</td>
 														</small></p>
-											</div>
+												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
 														data-bs-dismiss="modal">Close</button>
@@ -71,10 +76,14 @@
 											</div>
 										</div>
 									</div>
+									<!-- Fim Modal -->
+
 								</div>
 							</div>
 						</div>
 					</div>
+					<!-- Fim card receita -->
+
 				</div>
 			</th:block>
 		</tbody>

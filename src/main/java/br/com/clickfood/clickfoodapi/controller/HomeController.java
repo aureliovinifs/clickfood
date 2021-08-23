@@ -11,18 +11,14 @@ public class HomeController {
 		return "index";
 	}
 
-	@RequestMapping("/receitas")
-	public String receitas() {
-		return "receitas";
-	}
-
 	@RequestMapping("/sobre")
 	public String sobre() {
 		return "sobre";
 	}
-	
+
 	@RequestMapping("/dica")
 	public String dica() {
 		return "dica";
 	}
+
 }

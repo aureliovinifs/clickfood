@@ -1,44 +1,44 @@
-	<!DOCTYPE html>
-	<html lang="pt" xmlns:th="www.thymelaf.org">
-	
-	<head>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-			crossorigin="anonymous"></script>
-		<meta charset="utf-8">
-		<title>ClickFood</title>
-	</head>
-	
-	<body>
-		<div th:replace="base :: navlinks"></div>
-		<h2>Página Inicial</h2>
-	
-		<form action="#" th:action="@{/pesquisar}" th:object="${wrapper}" method="post">
-			<table class="table table-bordered table-hover table-striped">
-				<thead>
-					<tr>
-						<th></th>
-						<th>Nome</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="ingrediente, stat : *{ingredienteList}">
-						<td width="10%">
-							<input type="checkbox" th:field="*{ingredienteList[__${stat.index}__].selecionado}" />
-							<input type="hidden" th:field="*{ingredienteList[__${stat.index}__].id}" />
-							<input type="hidden" th:field="*{ingredienteList[__${stat.index}__].nome}" />
-						</td>
-						<td   th:text="${ingrediente.getNome()}"></td>
-					</tr>
-				</tbody>
-			</table>
-			<button type="submit" value="submit" class="btn btn-success">Pesquisar receitas</button>
-		</form>
-	
-		<div th:replace="base :: footer"></div>
-	
-	</body>
-	
-	</html>
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="www.thymelaf.org">
+
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<meta charset="utf-8">
+	<title>ClickFood</title>
+</head>
+
+<body>
+	<div th:replace="base :: navlinks"></div>
+	<h2>Página Inicial</h2>
+
+	<form action="#" th:action="@{/receitas/pesquisar}" th:object="${listaIngredientesComSelecao}" method="post">
+		<table class="table table-bordered table-hover table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Nome</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ingrediente, stat : *{ingredienteList}">
+					<td width="10%">
+						<input type="checkbox" th:field="*{ingredienteList[__${stat.index}__].selecionado}" />
+						<input type="hidden" th:field="*{ingredienteList[__${stat.index}__].id}" />
+						<input type="hidden" th:field="*{ingredienteList[__${stat.index}__].nome}" />
+					</td>
+					<td th:text="${ingrediente.getNome()}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<button type="submit" value="submit" class="btn btn-success">Pesquisar receitas</button>
+	</form>
+
+	<div th:replace="base :: footer"></div>
+
+</body>
+
+</html>
