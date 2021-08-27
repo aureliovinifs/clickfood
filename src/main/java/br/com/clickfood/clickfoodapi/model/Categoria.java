@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "categoria", schema = "clickfoodapi")
+@Table(name = "categoria", schema = "heroku_b4b0e6c1521538d")
 public class Categoria {
 
 	@Id

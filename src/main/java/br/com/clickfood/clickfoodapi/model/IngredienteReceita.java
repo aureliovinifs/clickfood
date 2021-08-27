@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ingrediente_receita", schema = "clickfoodapi")
+@Table(name = "ingrediente_receita", schema = "heroku_b4b0e6c1521538d")
 public class IngredienteReceita {
 
 	@Id
