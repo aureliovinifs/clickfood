@@ -7,25 +7,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<meta charset="utf-8">
 	<title>ClickFood</title>
 </head>
-
-<script>
-
-	function preencherModal(nome, tempo, serve, kcal, preparo) {
-		document.getElementById('receita-nome').innerHTML = nome;
-		document.getElementById('receita-tempo').innerHTML = 'Tempo: ' + tempo;
-		document.getElementById('receita-serve').innerHTML = 'Serve: ' + serve;
-		document.getElementById('receita-kcal').innerHTML = 'Kcal: ' + kcal;
-		document.getElementById('receita-preparo').innerHTML = 'Mode de preparo: ' + preparo;
-
-		$('#exampleModal').modal('toggle');
-
-	}
-
-</script>
 
 <body>
 	<div th:replace="base :: navlinks"></div>
@@ -35,41 +19,51 @@
 			<!-- PREENCHENDO A TABELA COM AS RECEITAS-->
 			<th:block th:each="receita : ${receitas}">
 				<div class="card mb-3" style="max-width: 540px;">
-
-					<!-- Inicio card receita -->
 					<div class="row g-0">
+						<!-- CARD DE RECEITA -->
 						<div class="col-md-4">
 							<img th:src="@{${receita.url}}" class="img-fluid rounded-start" alt="...">
 						</div>
-						<div class="col-md-8">
+					<div class="col-md-8">
 							<div>
 								<div class="card-body">
 									<h5 class="card-title">
 										<p th:text="${receita.nome}"></p>
 									</h5>
-									<button type="button" class="btn btn-primary" th:data-nome="${receita.nome}"
-										th:data-tempo="${receita.tempo}" th:data-serve="${receita.serve}"
-										th:data-kcal="${receita.kcal}" th:data-preparo="${receita.preparo}"
-										th:onclick="preencherModal(this.getAttribute('data-nome'),this.getAttribute('data-tempo'),this.getAttribute('data-serve'),this.getAttribute('data-kcal'), this.getAttribute('data-preparo'))"
-										style=" width: 35%; height: 20%;">ver
+									<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+										data-bs-target="#exampleModal" style=" width: 35%; height: 20%;">ver
 										mais</button>
-
+						<!-- CARD DE RECEITA -->
 									<!-- Modal -->
-									<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel"
-										aria-hidden="true">
+									<div class="modal fade" id="exampleModal" 
+										aria-labelledby="exampleModalLabel" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title" id="receita-nome"></h5>
+													<h5 class="modal-title" id="exampleModalLabel"
+														th:text="${receita.nome}"></h5>
 													<button type="button" class="btn-close" data-bs-dismiss="modal"
 														aria-label="Close"></button>
 												</div>
 												<div class="modal-body">
-													<p class="card-text" id="receita-tempo"></p>
-													<p class="card-text" id="receita-serve"></p>
-													<p class="card-text" id="receita-kcal"></p>
-													<p class="card-text" id="receita-preparo"></p>
-												</div>
+													<img th:src="@{${receita.url}}" class="img-fluid rounded-start"
+														alt="...">
+													<p class="card-text">Tempo: <td th:text="${receita.tempo}"
+															class="mdl-data-table__cell--non-numeric"></td>
+													</p>
+													<p class="card-text">Serve: <td th:text="${receita.serve}"
+															class="mdl-data-table__cell--non-numeric"></td>
+													</p>
+													<p class="card-text">Kcal: <td th:text="${receita.kcal}"
+															class="mdl-data-table__cell--non-numeric"></td>
+													</p>
+
+													<p class="card-text"><small class="text-muted">Modo de preparo <td
+																th:text="${receita.preparo}"
+																class="mdl-data-table__cell--non-numeric">
+															</td>
+														</small></p>
+											</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
 														data-bs-dismiss="modal">Close</button>
@@ -77,14 +71,10 @@
 											</div>
 										</div>
 									</div>
-									<!-- Fim Modal -->
-
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- Fim card receita -->
-
 				</div>
 			</th:block>
 		</tbody>
