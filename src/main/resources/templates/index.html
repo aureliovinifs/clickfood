@@ -1,44 +1,92 @@
-	<!DOCTYPE html>
-	<html lang="pt" xmlns:th="www.thymelaf.org">
-	
-	<head>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-			crossorigin="anonymous"></script>
-		<meta charset="utf-8">
-		<title>ClickFood</title>
-	</head>
-	
-	<body>
-		<div th:replace="base :: navlinks"></div>
-		<h2>Página Inicial</h2>
-	
-		<form action="#" th:action="@{/pesquisar}" th:object="${wrapper}" method="post">
-			<table class="table table-bordered table-hover table-striped">
-				<thead>
-					<tr>
-						<th></th>
-						<th>Nome</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="ingrediente, stat : *{ingredienteList}">
-						<td width="10%">
-							<input type="checkbox" th:field="*{ingredienteList[__${stat.index}__].selecionado}" />
-							<input type="hidden" th:field="*{ingredienteList[__${stat.index}__].id}" />
-							<input type="hidden" th:field="*{ingredienteList[__${stat.index}__].nome}" />
-						</td>
-						<td   th:text="${ingrediente.getNome()}"></td>
-					</tr>
-				</tbody>
-			</table>
-			<button type="submit" value="submit" class="btn btn-success">Pesquisar receitas</button>
-		</form>
-	
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="www.thymelaf.org">
+
+<head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<meta charset="utf-8">
+	<title>ClickFood</title>
+	<link rel="stylesheet" type="text/css" href="estilo.css">
+
+
+</head>
+
+<body>
+
+	<div th:replace="base :: navlinks"></div>
+	<section class="header-site">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<h1 class="text-center" style="color: black;">BEM VINDO </h1>
+					<p class=" text-center" style="color: black;">O melhor site para você pesquisar Receitas</p>
+					<p class="text-center" style="color: black;">CLICK FOOD</p>
+					<p class="text-center">
+						<a href="#secaoreceitas" class="btn btn-danger" style="color: black;">Vamos aos Ingredientes</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<div class="fluid">
+		<div class="card-group">
+			<div class="card">
+				<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+					class="card-img-top" alt="...">
+				<div class="card-img-overlay">
+
+				</div>
+			</div>
+			<div class="card">
+				<img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+					class="card-img-top" alt="...">
+				<div class="card-img-overlay">
+					<h3 class="card-title">Não sabe o que cozinhar com o que tem em casa?</h3>
+
+					<h6 class="card-text">Selecione os ingredientes que você possui e nosso software te retornará as
+						receitas que podes fazer com o que tens em casa!.</h6>
+
+				</div>
+			</div>
+			<div class="card">
+				<img src="https://images.unsplash.com/photo-1496412705862-e0088f16f791?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+					class="card-img-top" alt="...">
+				<div class="card-img-overlay">
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<section class="img-site1" id="secaoreceitas">
+		<div class="container">
+			<form action="#" th:action="@{/receitas/pesquisar}" th:object="${listaIngredientesComSelecao}"
+				method="post">
+
+				<div class="row">
+					<th:block th:each="ingrediente, stat : *{ingredienteList}">
+						<div class="col-6 col-md-2">
+							<div class="btn-group-toggle " data-toggle="buttons">
+								<label class="btn btn-secondary active mesmo-tamanho">
+									<input type="checkbox" th:text="${ingrediente.getNome()}"
+										th:field="*{ingredienteList[__${stat.index}__].selecionado}" width="500px">
+									<input type="hidden" th:field="*{ingredienteList[__${stat.index}__].id}" />
+									<input type="hidden" th:field="*{ingredienteList[__${stat.index}__].nome}" />
+								</label>
+								<p>
+							</div>
+						</div>
+				</div>
+				<button type="submit" value="submit" class="btn btn-success mesmo-tamanho " style>Pesquisar
+					receitas</button>
+			</form>
+		</div>
 		<div th:replace="base :: footer"></div>
-	
-	</body>
-	
-	</html>
+	</section>
+</body>
+
+</html>
