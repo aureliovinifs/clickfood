@@ -70,8 +70,8 @@
 				<div class="row">
 					<th:block th:each="ingrediente, stat : *{ingredienteList}">
 						<div class="col-6 col-md-2">
-							<div class="btn-group-toggle " data-toggle="buttons">
-								<label class="btn btn-secondary active mesmo-tamanho">
+							<div class="btn-group-toggle mesmo-tamanho " data-toggle="buttons">
+								<label class="mesmo-tamanho">
 									<input type="checkbox" th:text="${ingrediente.getNome()}"
 										th:field="*{ingredienteList[__${stat.index}__].selecionado}" width="500px">
 									<input type="hidden" th:field="*{ingredienteList[__${stat.index}__].id}" />
