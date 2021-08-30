@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "receita", schema = "heroku_9ad0506350e14e0")
+@Table(name = "receita", schema = "heroku_a130e8c74333e84")
 public class Receita {
 
 	@Id
